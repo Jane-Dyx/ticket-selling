@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmum.server.mapper.TicketMapper">
+    <insert id="generateNewTicket">
+        insert into `ticket`(`eid`, `seat_no`,`uid`,`price`) values (#{eid}, #{seatNo},0,#{price})
+    </insert>
+    <update id="updateTicketOnUid">
+        update `ticket` set  `uid` = #{uid} where `tid` = #{tid}
+    </update>
+
+    <select id="getEventTickets" resultType="com.xmum.server.entity.Ticket">
+        select * from `ticket` where `eid` = #{eid}
+    </select>
+    <select id="getTicketByEidAndSeatNo" resultType="com.xmum.server.entity.Ticket">
+        select * from `ticket` where `eid` = #{eid} and `seat_no` = #{seatNo}
+    </select>
+    <select id="getUserTickets" resultType="com.xmum.server.entity.Ticket">
+        select * from `ticket` where `uid` = #{uid}
+    </select>
+</mapper>
